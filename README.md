@@ -3,18 +3,18 @@
 ### Create a Simple dropdown
 
 ```
-var a = $('.mydropdown').dropdown({
-			mainText: 'Select Item', 
-			list:[
-	    		{'name': 'Item1'},
-	    		{'name': 'Item2'},
-	    		{'name': 'Item3'},
-			],
-			trigger: function($Item) {
-			    // item will be returned to this function on click
-				alert($Item.text());
-			}
-		});
+$('.mydropdown').dropdown({
+	mainText: 'Select Item', 
+	list:[
+		{'name': 'Item1'},
+		{'name': 'Item2'},
+		{'name': 'Item3'},
+	],
+	trigger: function($Item) {
+	    // item will be returned to this function on click
+		alert($Item.text());
+	}
+});
 
 ```
 
@@ -34,7 +34,7 @@ b.addItems({
 	    {'name': 'Item1', 'id': '1'},
 	    {'name': 'Item2', 'id': '2'},
 	    {'name': 'Item3', 'id': '3'},
-	],
+	]
 	//idAttr: '_id',  use this if have _id(or somthing else) in place of id
 	//nameAttr: 'display_name' use this if have display_name (or somthing else) in place of name
 });

@@ -1,14 +1,14 @@
-var a = $('.mydropdown').dropdown({
-			mainText: 'Select Item', 
-			list:[
-	    		{'name': 'Item1'},
-	    		{'name': 'Item2'},
-	    		{'name': 'Item3'},
-			],
-			trigger: function($Item) {
-				alert($Item.text());
-			}
-		});
+$('.mydropdown').dropdown({
+	mainText: 'Select Item', 
+	list:[
+		{'name': 'Item1'},
+		{'name': 'Item2'},
+		{'name': 'Item3'},
+	],
+	trigger: function($Item) {
+		alert($Item.text());
+	}
+});
 
 var b = $('.mydropdown1').dropdown({
 			mainText: 'Select Item', // will be replaced by selected name
