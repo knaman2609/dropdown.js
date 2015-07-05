@@ -1,41 +1,66 @@
 # dropdown.js
 
+### Create a Simple dropdown
+
 ```
-function func($item) {
-	alert($item.text() +' id:'+ $item.data('id'));
-}
+var a = $('.mydropdown').dropdown({
+			mainText: 'Select Item', 
+			list:[
+	    		{'name': 'Item1'},
+	    		{'name': 'Item2'},
+	    		{'name': 'Item3'},
+			],
+			trigger: function($Item) {
+			    // item will be returned to this function on click
+				alert($Item.text());
+			}
+		});
 
-function func1($item) {
-	alert($item.text() +' id:'+ $item.data('id'));
-}
+```
 
+### Add options dynamically
 
-var dropdown = new $('.mydropdown').dropdown({defaultText: 'Select Item'});
+```
+var b = $('.mydropdown1').dropdown({
+			mainText: 'Select Item', // will be replaced by selected name
+			trigger: function($Item) {
+				alert($Item.text() + ' id:'+ $Item.data('id'));
+			}
+		});
 
-// emulating for response coming from server
-setTimeout(function() {
-	dropdown.addItems({
-		selected: {'name': 'Item1', 'id': '1'}, 
-		list:[
-			{'name': 'Item1', 'id': '1'},
-			{'name': 'Item2', 'id': '2'},
-			{'name': 'Item3', 'id': '3'},
-		],
-		trigger: func
-	});	
-}, 1000);
-
-var dropdown1 = new $('.mydropdown1').dropdown({defaultText: 'Select Item'});
-dropdown1.addItems({
-	selected: {'display_name': 'Item1', '_id': '1'}, 
+b.addItems({
+	selected: {'name': 'Item2', 'id': '2'}, 
 	list:[
-		{'display_name': 'Item1', '_id': '1'},
-		{'display_name': 'Item2', '_id': '2'},
-		{'display_name': 'Item3', '_id': '3'},
+	    {'name': 'Item1', 'id': '1'},
+	    {'name': 'Item2', 'id': '2'},
+	    {'name': 'Item3', 'id': '3'},
 	],
-	idAttr: '_id', // define if using other than id
-	nameAttr: 'display_name', // define if using other than name
-	trigger: func1
-});	
+	//idAttr: '_id',  use this if have _id(or somthing else) in place of id
+	//nameAttr: 'display_name' use this if have display_name (or somthing else) in place of name
+});
+```
+
+### Disabled dropdown
 
 ```
+var c = $('.mydropdown2').dropdown({
+			mainText: 'Select Item', 
+			trigger: function($Item) {
+				alert($Item.text() + ' id:'+ $Item.data('id'));
+			}
+		});
+
+c.addItems({
+	list:[],
+	'noDataText': 'Disabled'
+}); 
+```
+
+### Remove options
+
+```
+c.removeItems();
+```
+
+
+

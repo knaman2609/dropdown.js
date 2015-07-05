@@ -9,6 +9,10 @@ function eachItem(selected, item, id, name) {
    return '<li class="dropdown_item">'+ item[name] +'</li>';  
   }
 
+  if (typeof selected == 'undefined') {
+    return  temp = '<li class="dropdown_item" data-id='+ item[id] +'>'+ item[name] +'</li>';  
+  }
+
   if (selected[id] == item[id])
   temp = '<li class="dropdown_item dropdown_item-selected" data-id='+  item[id] +'>'+ item[name] +'</li>';
   else
@@ -25,11 +29,14 @@ var Dropdown = function(element, options) {
 }
 
 Dropdown.prototype.create = function() {
-  var dropdownSel = '<div class="dropdown_sel">'+ this.options.defaultText+'</div>',
+  var dropdownSel = '<div class="dropdown_sel">'+ this.options.mainText+'</div>',
     dropdownArrow = '<div class="dropdown_arrow"></div>';
 
   this.$element.addClass('dropdown');  
   this.$element.html(dropdownSel + dropdownArrow);
+
+  if (typeof this.options.list != 'undefined') 
+  this.addItems(this.options); 
 }
 
 Dropdown.prototype.open = function() {
@@ -80,37 +87,50 @@ Dropdown.prototype.addListeners = function() {
   });
 }
 
-
+Dropdown.prototype.removeItems = function() {
+  this.$element.find('.dropdown_list').remove();
+}
 
 Dropdown.prototype.addItems = function(options) {
   var content = '', 
-    id = options.idAttr || 'id',
-    name = options.nameAttr || 'name',
-    items = '',
-    dropdownSel = '<div class="dropdown_sel">'+ options.selected[name]+'</div>';
-    
-  content += dropdownSel;
+    id = this.options.idAttr || 'id',
+    name = this.options.nameAttr || 'name',
+    items = '';
+
+  if (typeof options.selected != 'undefined') {
+    content = '<div class="dropdown_sel">'+ options.selected[name]+'</div>';
+    this.$element.find('.dropdown_sel').remove();
+  }
+  
+  if (!options.list.length) {
+    this.$element.addClass('dropdown-disabled');
+    this.$element.find('.dropdown_sel').text(options.noDataText);
+    return;
+  } 
+
   for (var i=0 ;i< options.list.length; i++) {
     items += eachItem(options.selected, options.list[i], id, name);
   }
   
   content += '<ul class="dropdown_list is-hidden">'+ items +'</ul>';
   
-  this.$element.find('.dropdown_sel').remove();
   this.$element.append(content);    
 }
 
 // plugin defaults
 Dropdown.DEFAULTS = {
-  defaultText: 'Test',
-  trigger: null
+  mainText: 'Select',
+  trigger: null,
+  noDataText: 'No data',
+  idAttr: 'id',
+  nameAttr: 'name'
 }
 
 // creates the Plugin
 function Plugin(option) {
     var data  = this.data('plugin.dropdown'),
-    options = $.extend({}, Dropdown.DEFAULTS, this.data(), option),
-    dropdown;
+    options = $.extend({}, Dropdown.DEFAULTS, option),
+    dropdown = false;
 
     if (!data) {
       dropdown =  new Dropdown(this, options);
