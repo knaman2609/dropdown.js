@@ -1,6 +1,8 @@
 # dropdown.js
 
-#### create a dropdown
+#### create a dropdown 
+
+[Example][http://knaman2609.github.io/dropdown.js#example1]
 
 ```javascript
 $('.mydropdown1').dropdown({
@@ -14,6 +16,9 @@ $('.mydropdown1').dropdown({
 ```
 
 #### dropdown with custom selected html and item html
+
+[Example][http://knaman2609.github.io/dropdown.js#example2]
+
 
 ```javascript
 $('.mydropdown2').dropdown({
@@ -31,6 +36,8 @@ $('.mydropdown2').dropdown({
 
 #### trigger callback function which returns the selected item and the dropdown
 
+[Example][http://knaman2609.github.io/dropdown.js#example3]
+
 ```javascript
 $('.mydropdown3').dropdown({
 	mainText: 'Select Item', 
@@ -46,6 +53,8 @@ $('.mydropdown3').dropdown({
 ```
 
 #### add items dynamically to dropdown
+
+[Example][http://knaman2609.github.io/dropdown.js#example4]
 
 ```
 var dynamicDropdown = $('.mydropdown4').dropdown({
