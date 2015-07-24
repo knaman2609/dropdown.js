@@ -1,8 +1,8 @@
 # dropdown.js
 
-### create a dropdown
+#### create a dropdown
 
-```
+```javascript
 $('.mydropdown1').dropdown({
 	mainText: 'Select Item', 
 	list:[
@@ -13,9 +13,9 @@ $('.mydropdown1').dropdown({
 });
 ```
 
-### dropdown with custom selected html and item html
+#### dropdown with custom selected html and item html
 
-```
+```javascript
 $('.mydropdown2').dropdown({
 	mainText: 'Select Item', 
 	list:[
@@ -29,9 +29,9 @@ $('.mydropdown2').dropdown({
 ```
 
 
-### trigger callback function which returns the selected item and the dropdown
+#### trigger callback function which returns the selected item and the dropdown
 
-```
+```javascript
 $('.mydropdown3').dropdown({
 	mainText: 'Select Item', 
 	list:[
@@ -45,10 +45,10 @@ $('.mydropdown3').dropdown({
 });
 ```
 
-### add items dynamically to dropdown
+#### add items dynamically to dropdown
 
 ```
-var b = $('.mydropdown4').dropdown({
+var dynamicDropdown = $('.mydropdown4').dropdown({
 			mainText: 'Select Item',
 			trigger: function($Item) {
 				alert($Item.text() + ' id:'+ $Item.data('id'));
@@ -57,10 +57,10 @@ var b = $('.mydropdown4').dropdown({
 			//nameAttr: 'display_name' use this if have display_name (or somthing else) in place of name
 		});
 ```
-### dynamically adding list ,id if provided will be added as the data-id to each list-item	
+##### dynamically adding list ,id if provided will be added as the data-id to each list-item	
 
 ```
-b.addItems({
+dynamicDropdown.addItems({
 	selected: {'name': 'Item2', 'id': '2'}, 
 	list:[
 	    {'name': 'Item1', 'id': '1'},
