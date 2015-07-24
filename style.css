@@ -13,21 +13,29 @@ ul {
 * Dropdown css
 *
 **/
-
 .dropdown {
-  background: #eee;
+  color: #1AC5DC;
   position: relative;
   width: 150px;
-  margin: 100px auto; 
+  display: inline-block;
   font-family: Arial, sans-serif;
   cursor: pointer;
 }
 
-.dropdown-disabled {
+.dropdown_selWrapper {
+  z-index: 9999;
+  padding-right: 20px;
+  position: relative;
   background: #fff;
-  border: 1px solid #eee;
-  cursor: default;
-  color: #666;
+  border: 5px solid #E2E2E2;
+  border-radius: 5px;
+}
+
+.dropdown_sel {
+  padding: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .dropdown_arrow {
@@ -35,14 +43,10 @@ ul {
   height: 0;
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
-  border-top: 8px solid #4C3F3F;
+  border-top: 8px solid #1AC5DC;
   position: absolute;
   right: 5px;
   top: 10px;
-}
-
-.dropdown_sel {
-  padding: 5px;
 }
 
 .dropdown_list {
@@ -50,22 +54,77 @@ ul {
   top: 100%;
   width: 100%;
   z-index: 9999;
+  margin-top: 15px;
+}
+
+.dropdown_list::after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  bottom: 100%;
+  right: 8px;
+  border-width: 0 8px 8px 8px;
+  border-style: solid;
+  border-color: rgba(0,0,0,0.1) transparent;
 }
 
 .dropdown_item {
   padding: 5px;
-  background: #ccc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: #fff;
+  border: 2px solid #E2E2E2;
+  border-radius: 2px; 
+  border-bottom-width: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.dropdown_item:last-child {
+  border-bottom: 2px solid #E2E2E2;
+  border-radius: 2px;
 }
 
 .dropdown_item:hover {
-  background: #bbb;
-}
+  color: #149CAF;
+}   
 
 .dropdown_item-selected {
-  color: #fff;
+  color: #1C7E8E;
 }
 
-.is-hidden {
-  display: none;
+/* Effect 1*/
+.dropdown_list-effect1 {
+  opacity: 0;
+  transition: all 0.2s ease-in;
+  pointer-events: none;
+  height: 0;
 }
 
+.dropdown.effect1 .dropdown_list {
+  opacity: 1;
+  pointer-events: auto;
+  height: auto;
+}
+
+/*Effect 2*/
+.dropdown_list-effect2 {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.2s ease-out;
+}
+
+.dropdown.effect2 .dropdown_list {
+  overflow: visible;
+  max-height: 400px;
+}
+
+/*Disabled*/
+.dropdown.is-disabled {
+  background: #fff;
+  border: 1px solid #eee;
+  cursor: default;
+  color: #666;
+}
