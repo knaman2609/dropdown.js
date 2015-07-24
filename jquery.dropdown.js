@@ -68,7 +68,7 @@ function create() {
     _class = this.options.selTpl.txtClass,
     $selWrapper  = $('<div class="dropdown_selWrapper"></div>'),
     arrow = '<div class="dropdown_arrow"></div>',
-    list = '<ul class="dropdown_list dropdown_list-'+ this.options.effect +'"></ul>';
+    list = '<div class="dropdown_listWrapper"><ul class="dropdown_list"></ul></div>';
 
   if (_class)  
   $selTpl.find('.'+ _class).text(this.options.mainText);
@@ -121,15 +121,15 @@ Dropdown.prototype.append = function(el) {
 };
 
 Dropdown.prototype.open = function() {
-  this.$element.addClass('is-active '+ this.options.effect);
+  this.$element.addClass('is-active');
 }
 
 Dropdown.prototype.close = function() {
-  this.$element.removeClass('is-active '+ this.options.effect);
+  this.$element.removeClass('is-active')
 }
 
 Dropdown.prototype.closeAll = function() {
-  $('.dropdown').removeClass('is-active '+ this.options.effect);
+  $('.dropdown').removeClass('is-active');
 }
 
 Dropdown.prototype.removeItems = function() {
@@ -170,8 +170,7 @@ Dropdown.DEFAULTS = {
   idAttr: 'id',
   nameAttr: 'name',
   selTpl: {tpl: '<div class="dropdown_sel"></div>', txtClass: null},
-  itmTpl: {tpl: '<li class="dropdown_item"></li>', txtClass: null},
-  effect: 'effect2'
+  itmTpl: {tpl: '<li class="dropdown_item"></li>', txtClass: null}
 }
 
 // creates the Plugin

@@ -49,77 +49,76 @@ ul {
   top: 10px;
 }
 
-.dropdown_list {
+.dropdown_listWrapper {
   position: absolute;
   top: 100%;
   width: 100%;
   z-index: 9999;
+  border-radius: 3px;
   margin-top: 15px;
+  border-top: 0px solid transparent;
+  border-bottom: 0px solid transparent;
+  transition: all 0.2s ease-out;
 }
 
-.dropdown_list::after {
+.dropdown_listWrapper::after {
   content: "";
   width: 0;
   height: 0;
   position: absolute;
-  bottom: 100%;
   right: 8px;
-  border-width: 0 8px 8px 8px;
+  top: -11px;
+  border-width: 0 8px 0px 8px;
   border-style: solid;
   border-color: rgba(0,0,0,0.1) transparent;
+  opacity: 0;
+  transition: all 0.2s ease-out;
+}
+
+.dropdown_list {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.2s ease-out;
 }
 
 .dropdown_item {
-  padding: 5px;
+  padding: 5px 10px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   background: #fff;
-  border: 2px solid #E2E2E2;
-  border-radius: 2px; 
-  border-bottom-width: 0px;
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
+  border: 3px solid #E2E2E2;
+  border-top-width: 0px;
+  border-bottom-width: 1px;
 }
 
 .dropdown_item:last-child {
-  border-bottom: 2px solid #E2E2E2;
-  border-radius: 2px;
+  border-bottom-width: 0px;
 }
 
 .dropdown_item:hover {
-  color: #149CAF;
+  color: #15BB6D;
 }   
 
 .dropdown_item-selected {
   color: #1C7E8E;
 }
 
-/* Effect 1*/
-.dropdown_list-effect1 {
-  opacity: 0;
-  transition: all 0.2s ease-in;
-  pointer-events: none;
-  height: 0;
+.dropdown.is-active .dropdown_list {
+  overflow: scroll;
+  max-height: 300px;
 }
 
-.dropdown.effect1 .dropdown_list {
+.dropdown.is-active .dropdown_listWrapper {
+  border-top: 3px solid #eee;
+  border-bottom: 3px solid #eee;
+}
+
+.dropdown.is-active .dropdown_listWrapper::after {
+  border-width: 0 8px 8px 8px;
   opacity: 1;
-  pointer-events: auto;
-  height: auto;
 }
 
-/*Effect 2*/
-.dropdown_list-effect2 {
-  max-height: 0;
-  overflow: hidden;
-  transition: all 0.2s ease-out;
-}
-
-.dropdown.effect2 .dropdown_list {
-  overflow: visible;
-  max-height: 400px;
-}
 
 /*Disabled*/
 .dropdown.is-disabled {
