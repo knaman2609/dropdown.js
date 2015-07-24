@@ -126,9 +126,6 @@ Dropdown.prototype.open = function() {
 
 Dropdown.prototype.close = function() {
   this.$element.removeClass('is-active '+ this.options.effect);
-
-  if (this.options.effect == 'effect3') 
-  applyEffect3.call(this, 'close');
 }
 
 Dropdown.prototype.closeAll = function() {
