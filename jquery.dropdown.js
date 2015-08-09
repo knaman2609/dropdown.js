@@ -3,13 +3,16 @@
 (function($) {
 
 function eachItem(selected, item, id, name) {
-  var $tpl = $(this.options.itmTpl.tpl),
-    _class = this.options.itmTpl.txtClass
-
-  if (_class)
-  $tpl.find('.'+ _class).text(item[name]);
-  else
-  $tpl.text(item[name]);  
+  var $tpl = $('<div class="dropdown__item"></div>'),
+    customTplInner = this.options.itmTpl;
+  
+  if (customTplInner.hasOwnProperty('tpl')) {
+    $tpl.html(customTplInner.tpl);
+    $tpl.find('.'+ customTplInner._class).text(item[name]);
+  } 
+  else {
+    $tpl.text(item[name]);  
+  } 
 
   if (typeof item[id] == 'undefined') {
     return $tpl;
@@ -20,7 +23,7 @@ function eachItem(selected, item, id, name) {
   }
 
   if (selected[id] == item[id])
-  return $tpl.data('id', item[id]).addClass('dropdown_item-selected');
+  return $tpl.data('id', item[id]).addClass('item-selected');
 
   else
   return  $tpl.data('id', item[id]);
@@ -36,16 +39,16 @@ function isClose(el) {
 }
 
 function updateSelItem (name) {
-  var _class = this.options.selTpl.txtClass;
+  var _class = this.options.selTpl._class;
   
   if (_class)  
-  this.$element.find('.dropdown_sel .'+ _class).text(name);
+  this.$selected.find('.'+ _class).text(name);
   else 
-  this.$element.find('.dropdown_sel').text(name);
+  this.$selected.text(name);
 }
 
 function selectedItem ($item) {
-  var _class = this.options.itmTpl.txtClass,
+  var _class = this.options.itmTpl._class,
     txt;
   
   if (_class)  
@@ -55,8 +58,8 @@ function selectedItem ($item) {
 
   updateSelItem.call(this, txt);
 
-  this.$element.find('.dropdown_item').removeClass('dropdown_item-selected');
-  $item.addClass('dropdown_item-selected');
+  this.$element.find('.dropdown__item').removeClass('item-selected');
+  $item.addClass('item-selected');
   this.close();
 
   if (this.options.trigger)
@@ -64,17 +67,20 @@ function selectedItem ($item) {
 }
 
 function create() {
-   var $selTpl = $(this.options.selTpl.tpl) ,
-    _class = this.options.selTpl.txtClass,
-    $selWrapper  = $('<div class="dropdown_selWrapper"></div>'),
-    arrow = '<div class="dropdown_arrow"></div>',
-    list = '<div class="dropdown_listWrapper"><ul class="dropdown_list"></ul></div>';
+   var $selTpl = $('<div class="dropdown__selected"></div>'),
+    customSelInner = this.options.selTpl,
+    $selWrapper  = $('<div class="dropdown__selected-wrapper"></div>'),
+    arrow = '<div class="dropdown__arrow"></div>',
+    list = '<div class="dropdown__list-wrapper"><ul class="dropdown__list"></ul></div>';
 
-  if (_class)  
-  $selTpl.find('.'+ _class).text(this.options.mainText);
-  else 
-  $selTpl.text(this.options.mainText);
-  
+  if (customSelInner.hasOwnProperty('tpl')) {
+    $selTpl.html(customSelInner.tpl);
+    $selTpl.find('.'+ customSelInner._class).text(this.options.mainText);
+  } 
+  else {
+    $selTpl.text(this.options.mainText);
+  } 
+
   $selWrapper.html($selTpl);
   $selWrapper.append(arrow);
 
@@ -82,8 +88,168 @@ function create() {
   this.$element.append($selWrapper);
   this.$element.append(list);
 
+  this.$selected = $selTpl;
+  this.$list = this.$element.find('.dropdown__list');
+
   if (typeof this.options.list != 'undefined') 
   this.addItems(this.options); 
+}
+
+function ensureWithinView () {
+  var listH = this.listH,
+    itemH = this.itemH,
+    scrollTop = this.$list.scrollTop(),
+    scrollReq;
+
+  if (this.currPosition == this.bottomScrewed) {
+    scrollReq = scrollTop +  itemH*1;
+    this.bottomScrewed++;
+    this.topScrewed++;
+  }
+  else if (this.currPosition == this.topScrewed) {
+    scrollReq = scrollTop - itemH*1;
+    this.bottomScrewed--;
+    this.topScrewed--;
+  }
+
+  console.log(this.bottomScrewed);
+  this.$list.scrollTop(scrollReq);
+}
+
+function scrollUp() {
+  if (!this.currPosition == -1 || this.currPosition < 1)
+  return
+  
+  this.currPosition--;
+  this.currEl.removeClass('scrolled');
+  this.currEl = this.currEl.prev();
+  this.currEl.addClass('scrolled');   
+  ensureWithinView.call(this);
+}
+
+function scrollDown() {
+  if (this.currPosition >= this.length - 1)
+  return;
+  
+  if (!this.currEl) {
+    this.currPosition++;
+    this.currEl = this.$element.find('.dropdown__item:first-child');
+    this.currEl.addClass('scrolled');
+    return;
+  }
+
+  this.currPosition++;
+
+  this.currEl.removeClass('scrolled');
+  this.currEl = this.currEl.next();
+  this.currEl.addClass('scrolled');
+
+  ensureWithinView.call(this);
+}
+
+function searchThis() {
+  var searchChar = this.searchChar,
+    name = this.options.nameAttr,
+    id = this.options.idAttr,
+    searchFound = null,
+    $node,
+    $items = this.$element.find('.dropdown__item'),
+    index,
+    diff,
+    list = this.list;
+
+  for (var i=0 ; i< list.length; i++) {
+    if (searchChar == list[i][name][0].toLowerCase()) {
+      searchFound = list[i][id];
+      index = i;
+      break;
+    }
+  }
+
+  if (!searchFound)
+  return;
+  
+  console.log(searchFound);
+  $items.each(function() {
+    if (searchFound == $(this).data('id')) {
+      $node = $(this);
+      return false;
+    }
+  });
+
+  $items.removeClass('scrolled');
+  $node.addClass('scrolled');
+  this.$list.scrollTop(this.itemH*index);
+  this.currEl = $node;
+
+  this.currPosition = index;
+
+  diff = this.length - index;
+  if (diff >= this.maxEl) {
+    this.topScrewed = index - 1;
+    this.bottomScrewed = index + this.maxEl;
+  }
+  else {
+    this.topScrewed = this.length - this.maxEl -1;
+    this.bottomScrewed = this.length ;
+  }
+
+  console.log(this.topScrewed);
+  console.log(this.bottomScrewed);
+}
+
+function listenToKeyCodes() {
+  var self = this,
+    keyCode;  
+
+  this.$element.off('keydown');
+
+  this.$element.on('keydown', function(e) {
+    keyCode = e.which;
+
+    if (keyCode == 40) {
+      if (self.$element.hasClass('is-active')) {
+        scrollDown.call(self);
+      } 
+      else {
+        self.closeAll();
+        self.open();
+      }
+    }
+    else if (keyCode == 38) {
+      scrollUp.call(self);
+    }
+    else if (keyCode == 13) {
+      if (isClose(self))
+      return;
+
+      selectedItem.call(self, self.currEl);
+    }
+    else {
+      if (isClose(self))
+      return;
+
+      self.searchChar = String.fromCharCode(keyCode).toLowerCase();
+      searchThis.call(self);
+    }
+  });
+}
+
+function addKeyEvents() {
+  var self = this;
+  this.$element.on('focus', function(e) {
+    listenToKeyCodes.call(self);
+  });
+}
+
+function calculateVars() {
+  if (typeof this.listH == 'undefined') {
+    this.listH = this.$list.outerHeight();
+    this.maxEl = Math.floor(this.listH/this.itemH);
+    this.bottomScrewed =  this.maxEl;
+
+    console.log(this.bottomScrewed);
+  }
 }
 
 function addListeners() {
@@ -93,7 +259,7 @@ function addListeners() {
     e.stopPropagation();
   });  
 
-  this.$element.find('.dropdown_selWrapper').on('click', function() {
+  this.$element.find('.dropdown__selected-wrapper').on('click', function() {
     var close = isClose(self);
     self.closeAll();
 
@@ -101,13 +267,17 @@ function addListeners() {
     else self.close();
   });
 
-  this.$element.find('.dropdown_item').on('click', function() {
+  this.$element.find('.dropdown__item').on('click', function() {
     selectedItem.call(self, $(this));
   });
 
   $(document).click(function() {
     self.closeAll();
   });
+
+  if (this.options.type == 'selectBox') {
+    addKeyEvents.call(this);
+  }
 }
 
 var Dropdown = function(element, options) {
@@ -116,12 +286,16 @@ var Dropdown = function(element, options) {
   create.call(this);
 }
 
-Dropdown.prototype.append = function(el) {
-  this.$element.find('.dropdown_list').append(el);
-};
 
 Dropdown.prototype.open = function() {
+  var self = this;
   this.$element.addClass('is-active');
+
+  if (this.options.type == 'selectBox') {
+    setTimeout(function() {
+      calculateVars.call(self);
+    },600);
+  }
 }
 
 Dropdown.prototype.close = function() {
@@ -133,18 +307,19 @@ Dropdown.prototype.closeAll = function() {
 }
 
 Dropdown.prototype.removeItems = function() {
-  this.$element.find('.dropdown_list').html();
+  this.$list.html();
 }
 
 Dropdown.prototype.disable = function  (argument) {
   this.$element.addClass('is-disabled');
-  this.$element.find('.dropdown_sel').text(this.options.noDataText);
+  this.$selected.text(this.options.noDataText);
 }
 
 Dropdown.prototype.addItems = function(options) {
   var  id = this.options.idAttr,
-    name = this.options.nameAttr,
-    items = '';
+    name = this.options.nameAttr;
+
+  this.$items = this.$element.find('.dropdown__item');
 
   if (typeof options.selected != 'undefined') {
     updateSelItem.call(this, options.selected[name])
@@ -156,10 +331,20 @@ Dropdown.prototype.addItems = function(options) {
   } 
 
   for (var i=0 ;i< options.list.length; i++) {
-    this.$element.find('.dropdown_list').append(eachItem.call(this, options.selected, options.list[i], id, name));
+    this.$list.append(eachItem.call(this, options.selected, options.list[i], id, name));
   }
   
   addListeners.call(this);
+
+  if (this.options.type == 'selectBox') {
+    this.$element.attr('tabindex', '0');
+    this.currPosition = -1;
+    this.length = options.list.length;
+    this.topScrewed = -1;
+    this.itemH = this.$element.find('.dropdown__item').outerHeight();
+    this.list = options.list;
+    self.currEl = null;
+  }
 }
 
 // plugin defaults
@@ -169,8 +354,9 @@ Dropdown.DEFAULTS = {
   noDataText: 'No data',
   idAttr: 'id',
   nameAttr: 'name',
-  selTpl: {tpl: '<div class="dropdown_sel"></div>', txtClass: null},
-  itmTpl: {tpl: '<li class="dropdown_item"></li>', txtClass: null}
+  selTpl: {},
+  itmTpl: {},
+  type: 'dropdown'
 }
 
 // creates the Plugin

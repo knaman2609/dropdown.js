@@ -20,9 +20,10 @@ ul {
   display: inline-block;
   font-family: Arial, sans-serif;
   cursor: pointer;
+  outline: transparent;
 }
 
-.dropdown_selWrapper {
+.dropdown__selected-wrapper {
   z-index: 9999;
   padding-right: 20px;
   position: relative;
@@ -31,14 +32,18 @@ ul {
   border-radius: 5px;
 }
 
-.dropdown_sel {
+.dropdown:focus .dropdown__selected-wrapper {
+  border-color:  #C3C1C1;
+}
+
+.dropdown__selected {
   padding: 5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.dropdown_arrow {
+.dropdown__arrow {
   width: 0;
   height: 0;
   border-left: 6px solid transparent;
@@ -49,7 +54,7 @@ ul {
   top: 10px;
 }
 
-.dropdown_listWrapper {
+.dropdown__list-wrapper {
   position: absolute;
   top: 100%;
   width: 100%;
@@ -61,7 +66,7 @@ ul {
   transition: all 0.2s ease-out;
 }
 
-.dropdown_listWrapper::after {
+.dropdown__list-wrapper::after {
   content: "";
   width: 0;
   height: 0;
@@ -75,13 +80,13 @@ ul {
   transition: all 0.2s ease-out;
 }
 
-.dropdown_list {
+.dropdown__list {
   max-height: 0;
   overflow: hidden;
   transition: all 0.2s ease-out;
 }
 
-.dropdown_item {
+.dropdown__item {
   padding: 5px 10px;
   white-space: nowrap;
   overflow: hidden;
@@ -92,33 +97,39 @@ ul {
   border-bottom-width: 1px;
 }
 
-.dropdown_item:last-child {
+.dropdown__item:last-child {
   border-bottom-width: 0px;
 }
 
-.dropdown_item:hover {
+.dropdown__item:hover {
   color: #15BB6D;
 }   
 
-.dropdown_item-selected {
+.dropdown__item.item-selected {
   color: #1C7E8E;
 }
 
-.dropdown.is-active .dropdown_list {
-  overflow: scroll;
-  max-height: 300px;
+/*Scrolled*/
+.dropdown__item.scrolled {
+  background: #CCFFFC;
 }
 
-.dropdown.is-active .dropdown_listWrapper {
+
+ /* Active */
+.dropdown.is-active .dropdown__list {
+  overflow: scroll;
+  max-height: 200px;
+}
+
+.dropdown.is-active .dropdown__list-wrapper {
   border-top: 3px solid #eee;
   border-bottom: 3px solid #eee;
 }
 
-.dropdown.is-active .dropdown_listWrapper::after {
+.dropdown.is-active .dropdown__list-wrapper::after {
   border-width: 0 8px 8px 8px;
   opacity: 1;
 }
-
 
 /*Disabled*/
 .dropdown.is-disabled {
