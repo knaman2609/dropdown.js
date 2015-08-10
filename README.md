@@ -15,7 +15,7 @@ dropdown({
   }
 });
 ```
-#### Use it as SelectBox
+#### Use it as SelectBox ['Options']
 - type : 'selectBox', it works as select box.Supports key navigation and search.
 - listHeight: '300', for selectBox to work properly provide the max-height of the list.
 
