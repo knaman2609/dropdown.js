@@ -6,35 +6,43 @@
   <link rel="stylesheet" href="style.css">
   <style>
   .container {
-  	margin: 0 auto;
-  	width: 250px;
-  	padding: 20px;
-  }
+    width: 1000px;
+    margin: 100px auto;
+    position: relative;
+}
 
-  .dropdown {
-  	width: 100%;
-  	margin-bottom: 140px;
-  }
-  
-  h4 {
-    font-family: Arial, sans-serif; 
-    color: #444;
-  }
+.mydropdown1,
+.mydropdown2,
+.mydropdown3,
+.mydropdown4 {
+  position: absolute;
+  font-size: 14px;
+  width: 20%;
+}
+
+.mydropdown2 {
+  left: 22%;
+}
+
+.mydropdown3 {
+  left: 44%;
+}
+
+.mydropdown4 {
+  left: 66%;
+}
+
 </style>
 </head>
 <body>
 <div class="container">
-  <h4>Example1</h4>
 	<div class="mydropdown1" id="example1"></div>
-  <h4>Example2</h4>
 	<div class="mydropdown2	" id="example2"></div>
-  <h4>Example3</h4>
   <div class="mydropdown3	" id="example3"></div>
-  <!-- <h4>Example4</h4> -->
 	<div class="mydropdown4	" id="example4"></div>
 </div>
 <script src="jquery.min.js"></script>
-<script src='jquery.dropdown.js'></script>
+<script src='dropdown.js'></script>
 <script src='main.js'></script>
 
 </body>

@@ -1,71 +1,50 @@
-# dropdown.js
+# dropDown.js
 
 #### create a dropdown
 
 ```javascript
-$('.mydropdown1').dropdown({
-	mainText: 'Select Item', 
-	list:[
-		{'name': 'Item1'},
-		{'name': 'Item2'},
-		{'name': 'Item3'}
-	]
+dropdown({
+  mainText: 'Select Item',
+  field: $('.mydropdown1'),
+  list: [
+    {name: 'Naman'},
+    {name: 'Kalkh'}
+  ],
+  onSelect: function($item, $dropdown) {
+    console.log($item, $dropdown);
+  }
 });
 ```
 
-#### dropdown with custom selected html and item html
+#### For custom selected and item html
+	selTpl: {tpl:  '&#9829 <span class="name"> selected item </span>', _class: 'name'},
+	itmTpl: {tpl:  '&#9829 <span class="name"> item </span>', _class: 'name'},
+	
+The selTpl will be inserted inside "<div class="dropdown__selected"></div>
 
-```javascript
-$('.mydropdown2').dropdown({
-	mainText: 'Select Item', 
-	list:[
-		{'name': 'Item1'},
-		{'name': 'Item2'},
-		{'name': 'Item3'},
-	],
-  	selTpl: {tpl: '<div class="dropdown_sel"><span class="icon" style="margin-right: 3px;">&#9829</span><span class="text"></span></div>', txtClass: 'text'},
-	itmTpl: {tpl: '<li class="dropdown_item"><span class="icon" style="margin-right: 3px;">&#9829</span><span class="name"></span></li>', txtClass: 'name'}
-});
-```
+The itmTpl will be inserted inside "<div class="dropdown__item"></div>
 
+#### Add items dynamically
+    var dropdown =  dropdown({
+        mainText: 'Select Item',
+        field: $('.mydropdown1')
+    });
 
-#### trigger callback function which returns the selected item and the dropdown
+    dropdown.addItems({
+        list: [
+         {name: 'Naman'},
+         {name: 'Kalkh'}
+        ]
+    });
 
-```javascript
-$('.mydropdown3').dropdown({
-	mainText: 'Select Item', 
-	list:[
-		{'name': 'Item1'},
-		{'name': 'Item2'},
-		{'name': 'Item3'},
-	],
-	trigger: function($item, $dropdown) {
-		alert($item.text());
-	}
-});
-```
+#### Append an element to the list
+    dropdown.append('<div class="datepicker">My datepicker</div>');
 
-#### add items dynamically to dropdown
-
-```
-var dynamicDropdown = $('.mydropdown4').dropdown({
-			mainText: 'Select Item',
-			trigger: function($Item) {
-				alert($Item.text() + ' id:'+ $Item.data('id'));
-			}
-			//idAttr: '_id',  use this if have _id(or somthing else) in place of id
-			//nameAttr: 'display_name' use this if have display_name (or somthing else) in place of name
-		});
-```
-##### dynamically adding list ,id if provided will be added as the data-id to each list-item	
-
-```
-dynamicDropdown.addItems({
-	selected: {'name': 'Item2', 'id': '2'}, 
-	list:[
-	    {'name': 'Item1', 'id': '1'},
-	    {'name': 'Item2', 'id': '2'},
-	    {'name': 'Item3', 'id': '3'},
-	]
-});
-```
+#### Options: 
+- type : 'selectBox', it works as select box.Supports key navigation and search.
+- listHeight: '300', for selectBox to work properly provide the max-height.
+- noDataText: 'Not available', applies `is-disabled` class if list is empty.
+- selected: {name: 'Naman', 'id': 1}, replaces the mainText if id is found in the list.
+- nameAttr: 'display_name', use this if you have other than name in your json.
+- idAttr: '_id', use this if  you have other than id in your json.
+    

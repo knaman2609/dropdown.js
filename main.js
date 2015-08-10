@@ -1,3 +1,24 @@
+dropdown({
+  mainText: 'Select Item',
+  field: $('.mydropdown1'),
+  list: [
+    {name: 'Naman'},
+    {name: 'Kalkh'}
+  ]
+});
+
+dropdown({
+  mainText: 'Select Item',
+  field: $('.mydropdown2'),
+  list: [
+    {name: 'Naman'},
+    {name: 'Kalkh'}
+  ],
+  selTpl: {tpl:  '&#9829 <span class="name"></span>', _class: 'name'},
+  itmTpl: {tpl:  '&#9829 <span class="name"></span>', _class: 'name'},
+});
+
+
 var list = [ 
   {name: 'Afghanistan', code: 'AF'}, 
   {name: 'Åland Islands', code: 'AX'}, 
@@ -51,12 +72,14 @@ var list = [
 ] ;
 
 
-$('.mydropdown4').dropdown({
+dropdown({
   mainText: 'Select Country',
+  field: $('.mydropdown4'),
   list: list,
   idAttr: 'code',
   type: 'selectBox',  
-  trigger: function($Item) {
+  listHeight: 300,
+  onSelect: function($Item) {
     console.log($Item.data('id'));
   }
 });

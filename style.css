@@ -114,11 +114,10 @@ ul {
   background: #CCFFFC;
 }
 
-
  /* Active */
 .dropdown.is-active .dropdown__list {
   overflow: scroll;
-  max-height: 200px;
+  max-height: 300px;
 }
 
 .dropdown.is-active .dropdown__list-wrapper {
@@ -138,3 +137,9 @@ ul {
   cursor: default;
   color: #666;
 }
+
+
+/* Custom*/
+
+
+

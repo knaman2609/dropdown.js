@@ -1,7 +1,6 @@
-"use strict";
-
 (function($) {
 
+// item constructor
 function eachItem(selected, item, id, name) {
   var $tpl = $('<div class="dropdown__item"></div>'),
     customTplInner = this.options.itmTpl;
@@ -29,6 +28,7 @@ function eachItem(selected, item, id, name) {
   return  $tpl.data('id', item[id]);
 } 
 
+// tells if current element is Close
 function isClose(el) {
   var close = true;
 
@@ -38,6 +38,7 @@ function isClose(el) {
   return close;
 }
 
+// update the current item
 function updateSelItem (name) {
   var _class = this.options.selTpl._class;
   
@@ -47,6 +48,7 @@ function updateSelItem (name) {
   this.$selected.text(name);
 }
 
+// triggered on item Select
 function selectedItem ($item) {
   var _class = this.options.itmTpl._class,
     txt;
@@ -62,10 +64,11 @@ function selectedItem ($item) {
   $item.addClass('item-selected');
   this.close();
 
-  if (this.options.trigger)
-  this.options.trigger($item, this.$element);
+  if (this.options.onSelect)
+  this.options.onSelect($item, this.$element);
 }
 
+// creates the dropdown elements
 function create() {
    var $selTpl = $('<div class="dropdown__selected"></div>'),
     customSelInner = this.options.selTpl,
@@ -95,6 +98,7 @@ function create() {
   this.addItems(this.options); 
 }
 
+// make sure the element scrolled is within the view
 function ensureWithinView () {
   var listH = this.listH,
     itemH = this.itemH,
@@ -112,10 +116,10 @@ function ensureWithinView () {
     this.topScrewed--;
   }
 
-  console.log(this.bottomScrewed);
   this.$list.scrollTop(scrollReq);
 }
 
+// scroll Up
 function scrollUp() {
   if (!this.currPosition == -1 || this.currPosition < 1)
   return
@@ -127,6 +131,7 @@ function scrollUp() {
   ensureWithinView.call(this);
 }
 
+// scroll Down
 function scrollDown() {
   if (this.currPosition >= this.length - 1)
   return;
@@ -147,6 +152,8 @@ function scrollDown() {
   ensureWithinView.call(this);
 }
 
+// search the list for typed char
+// supports only one char
 function searchThis() {
   var searchChar = this.searchChar,
     name = this.options.nameAttr,
@@ -169,7 +176,6 @@ function searchThis() {
   if (!searchFound)
   return;
   
-  console.log(searchFound);
   $items.each(function() {
     if (searchFound == $(this).data('id')) {
       $node = $(this);
@@ -194,10 +200,11 @@ function searchThis() {
     this.bottomScrewed = this.length ;
   }
 
-  console.log(this.topScrewed);
-  console.log(this.bottomScrewed);
 }
 
+// listen to keys
+// ----------
+// if key is up, down, enter or any seatch text
 function listenToKeyCodes() {
   var self = this,
     keyCode;  
@@ -242,16 +249,7 @@ function addKeyEvents() {
   });
 }
 
-function calculateVars() {
-  if (typeof this.listH == 'undefined') {
-    this.listH = this.$list.outerHeight();
-    this.maxEl = Math.floor(this.listH/this.itemH);
-    this.bottomScrewed =  this.maxEl;
-
-    console.log(this.bottomScrewed);
-  }
-}
-
+//  add listeners to handle click evnts on the dropdown
 function addListeners() {
   var self = this;
 
@@ -271,31 +269,35 @@ function addListeners() {
     selectedItem.call(self, $(this));
   });
 
-  $(document).click(function() {
-    self.closeAll();
-  });
+  if (!window._dropdownInit) {
+    $(document).click(function() {
+      self.closeAll();
+    });
 
+    window._dropdownInit = true;
+  }
+
+  // add keyboard events for selectbox
   if (this.options.type == 'selectBox') {
     addKeyEvents.call(this);
   }
 }
 
+// cunstructor function
 var Dropdown = function(element, options) {
   this.$element = element;
   this.options = options;
+  this.listH = this.options.listHeight;
   create.call(this);
 }
 
+Dropdown.prototype.append = function(el) {
+  this.$list.append(el);
+}
 
 Dropdown.prototype.open = function() {
   var self = this;
   this.$element.addClass('is-active');
-
-  if (this.options.type == 'selectBox') {
-    setTimeout(function() {
-      calculateVars.call(self);
-    },600);
-  }
 }
 
 Dropdown.prototype.close = function() {
@@ -315,6 +317,9 @@ Dropdown.prototype.disable = function  (argument) {
   this.$selected.text(this.options.noDataText);
 }
 
+// add items
+// ---------
+// creates the dropdown list
 Dropdown.prototype.addItems = function(options) {
   var  id = this.options.idAttr,
     name = this.options.nameAttr;
@@ -336,6 +341,7 @@ Dropdown.prototype.addItems = function(options) {
   
   addListeners.call(this);
 
+  // if selected type is selectbox
   if (this.options.type == 'selectBox') {
     this.$element.attr('tabindex', '0');
     this.currPosition = -1;
@@ -343,37 +349,47 @@ Dropdown.prototype.addItems = function(options) {
     this.topScrewed = -1;
     this.itemH = this.$element.find('.dropdown__item').outerHeight();
     this.list = options.list;
-    self.currEl = null;
+    this.currEl = null;
+    this.maxEl = Math.floor(this.listH/this.itemH);
+    this.bottomScrewed =  this.maxEl;
   }
 }
 
 // plugin defaults
 Dropdown.DEFAULTS = {
   mainText: 'Select',
-  trigger: null,
+  onSelect: null,
   noDataText: 'No data',
   idAttr: 'id',
   nameAttr: 'name',
   selTpl: {},
   itmTpl: {},
-  type: 'dropdown'
+  type: 'dropdown',
+  field: null
 }
 
 // creates the Plugin
 function Plugin(option) {
-    var data  = this.data('plugin.dropdown'),
-    options = $.extend({}, Dropdown.DEFAULTS, option),
-    dropdown = false;
+  var data  = option.field.data('plugin.dropdown'),
+  options = $.extend({}, Dropdown.DEFAULTS, option),
+  dropdown = false;
 
-    if (!data) {
-      dropdown =  new Dropdown(this, options);
-      this.data('plugin.dropdown', (data = dropdown));
-    }
+  if (!data) {
+    dropdown =  new Dropdown(option.field, options);
+    option.field.data('plugin.dropdown', (data = dropdown));
+  }
 
-    return dropdown;
+  return dropdown;
 }
 
-$.fn.dropdown = Plugin;
+// Export the plugin 
+// ---------
+//  attach it to window object if module not  defined
+if (typeof module != 'undefined')
+module.export = Plugin;
+else
+window.dropdown = Plugin;
+
 })(jQuery) 
 
 
