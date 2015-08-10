@@ -15,14 +15,23 @@ dropdown({
   }
 });
 ```
+#### Use it as SelectBox
+- type : 'selectBox', it works as select box.Supports key navigation and search.
+- listHeight: '300', for selectBox to work properly provide the max-height of the list.
 
 #### For custom selected and item html
 	selTpl: {tpl:  '&#9829 <span class="name"> selected item </span>', _class: 'name'},
 	itmTpl: {tpl:  '&#9829 <span class="name"> item </span>', _class: 'name'},
 	
-The selTpl will be inserted inside "<div class="dropdown__selected"></div>
+The selTpl will be inserted inside 
+	```
+	<div class="dropdown__selected"></div>
+	```
 
-The itmTpl will be inserted inside "<div class="dropdown__item"></div>
+The itmTpl will be inserted inside 
+	```
+	<div class="dropdown__item"></div>
+	```
 
 #### Add items dynamically
     var dropdown =  dropdown({
@@ -41,8 +50,6 @@ The itmTpl will be inserted inside "<div class="dropdown__item"></div>
     dropdown.append('<div class="datepicker">My datepicker</div>');
 
 #### Options: 
-- type : 'selectBox', it works as select box.Supports key navigation and search.
-- listHeight: '300', for selectBox to work properly provide the max-height.
 - noDataText: 'Not available', applies `is-disabled` class if list is empty.
 - selected: {name: 'Naman', 'id': 1}, replaces the mainText if id is found in the list.
 - nameAttr: 'display_name', use this if you have other than name in your json.
