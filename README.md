@@ -20,8 +20,8 @@ dropdown({
 - listHeight: '300', for selectBox to work properly provide the max-height of the list.
 
 #### For custom selected and item html
-	selTpl: {tpl:  '&#9829 <span class="name"> selected item </span>', _class: 'name'},
-	itmTpl: {tpl:  '&#9829 <span class="name"> item </span>', _class: 'name'},
+	selTpl: {tpl:  '<span class="name"> selected item </span>', _class: 'name'},
+	itmTpl: {tpl:  '<span class="name"> item </span>', _class: 'name'},
 	
 The selTpl will be inserted inside 
 	```
@@ -54,4 +54,10 @@ The itmTpl will be inserted inside
 - selected: {name: 'Naman', 'id': 1}, replaces the mainText if id is found in the list.
 - nameAttr: 'display_name', use this if you have other than name in your json.
 - idAttr: '_id', use this if  you have other than id in your json.
-    
+
+#### Api
+- dropdown.open() --  opens the dropdown/selectBox 
+- dropdown.close() -- closes the dropdown/selectBox
+- dropdown.closeAll() -- closes all the dropdowns/ selectBox
+- dropdown.disabled() -- adds disabled class to the dropdowns
+- dropdown.removeItems() -- emptys the list
