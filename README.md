@@ -84,7 +84,10 @@ dropdown.prependItems(
 });
 ```
 
+### Css
+Copy the css from dropdown.css file 
 
+  
 #### Add custom elements
     dropdown.addCustom('<div class="datepicker">My datepicker</div>');
 
