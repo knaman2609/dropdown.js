@@ -17,7 +17,7 @@ new dropdown({
 ```
 
 #### load from a url
- ```
+```javascript
  new dropdown({
     mainText: 'Select Item',
     field: $('.mydropdown1'),
@@ -31,7 +31,7 @@ new dropdown({
       console.log($item, $dropdown);
     }
   });
- ```
+```
 
 #### Use it as SelectBox [Options]
 - type : 'selectBox', it works as select box.Supports key navigation and search.
@@ -47,25 +47,28 @@ The selTpl will be inserted inside
 	```
 
 The itmTpl will be inserted inside 
+
 	```
-	<div class="dropdown__item"></div>
+    <div class="dropdown__item"></div>
 	```
 
 #### Add items dynamically
-    var dropdown = new dropdown({
+```javascript
+  var dropdown = new dropdown({
         mainText: 'Select Item',
         field: $('.mydropdown1')
-    });
+});
 
-    dropdown.addItems(
-        list: [
-         {name: 'Item1'},
-         {name: 'Item2'}
-        ]
-    );
+dropdown.addItems(
+    list: [
+     {name: 'Item1'},
+     {name: 'Item2'}
+    ]
+);
+```
 
 #### Update selected item text
-```
+```javascript
 dropdown.updateSelected({name: 'Item1'}, true);
 ```
 
@@ -73,7 +76,7 @@ pass `true` if the item is present in the list
 
 
 ### Add items at the top
-```
+```javascript
 dropdown.prependItems(
   list[
     {name: 'Item1'}
