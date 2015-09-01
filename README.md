@@ -2,7 +2,7 @@
 #### install
     npm install  dropdown-selectbox
 
-if not using browerify.webpack simply copy `dropdown.js` and `dropdown.css`
+if not using browerify/webpack simply copy `dropdown.js` and `dropdown.css`
 
 #### create a dropdown
 
@@ -42,27 +42,22 @@ new dropdown({
 
 #### Use it as SelectBox [Options]
 - type : 'selectBox', it works as select box.Supports key navigation and search.
-- listHeight: '300', for selectBox to work properly provide the max-height of the list.
+- scrollOn: 200, no of pixels to start scrolling for key down nav.
 
 #### For custom selected and item html
 	selTpl: {tpl:  '<span class="name"> selected item </span>', _class: 'name'},
 	itmTpl: {tpl:  '<span class="name"> item </span>', _class: 'name'},
 	
-The selTpl will be inserted inside 
-	```
-	<div class="dropdown__selected"></div>
-	```
 
-The itmTpl will be inserted inside 
-  ```
-  <div class="dropdown__item"></div>
-  ```
+The selTpl will be inserted inside `<div class="dropdown__selected"></div>`
+
+The itmTpl will be inserted inside ` <div class="dropdown__item"></div>`
 
 #### Add items dynamically
 ```javascript
-  var dropdown = new dropdown({
-        mainText: 'Select Item',
-        field: $('.mydropdown1')
+var dropdown = new dropdown({
+  mainText: 'Select Item',
+  field: $('.mydropdown1')
 });
 
 dropdown.addItems(
