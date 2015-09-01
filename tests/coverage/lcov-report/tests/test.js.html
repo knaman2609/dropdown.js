@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for tests/test.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../prettify.css">
+    <link rel="stylesheet" href="../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">tests/test.js</span></h1>
+    <h2>
+        Statements: <span class="metric">97.44% <small>(114 / 117)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">83.33% <small>(5 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(28 / 28)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">97.44% <small>(114 / 117)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">tests/</a> &#187; test.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var chai;
+var sinon;
+var sinonChai;
+var expect;
+&nbsp;
+var $;
+var Dropdown;
+var jsdom;
+&nbsp;
+// for running from terminal
+<span class="missing-if-branch" title="else path not taken" >E</span>if (typeof exports === 'object') {
+  sinon = require('sinon');
+  sinonChai = require('sinon-chai');
+  chai = require('chai');
+  expect = chai.expect;
+  chai.use(sinonChai);
+&nbsp;
+  jsdom = require('jsdom').jsdom;
+  document = jsdom('&lt;html&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;', {});
+  window = document.defaultView;
+&nbsp;
+  Dropdown = require('../dropdown.js');
+&nbsp;
+  $ = require('jquery');
+} else {
+<span class="cstat-no" title="statement not covered" >  expect = chai.expect;</span>
+<span class="cstat-no" title="statement not covered" >  Dropdown = window.Dropdown;</span>
+<span class="cstat-no" title="statement not covered" >  $ = window.jQuery;</span>
+}
+&nbsp;
+describe('Dropdown', function() {
+  context('Constructor and option errors', function() {
+    it('should  be a function', function() {
+      expect(Dropdown).to.be.a('function');
+    });
+&nbsp;
+    it('should throw error if options is not an object', function() {
+      expect(function() {
+        new Dropdown('');
+      }).to.throw('options is not an object');
+    });
+&nbsp;
+    it('should throw error if field is not present or not a jQuery object', function() {
+      expect(function() {
+        new Dropdown({field: {}});
+      }).to.throw('field is either not present or is not a jquery object');
+    });
+&nbsp;
+    it('should throw error if list is not array', function() {
+      expect(function() {
+        new Dropdown({field: $('&lt;div&gt;&lt;/div&gt;'), list: 'test'});
+      }).to.throw('list should be an array');
+    });
+  });
+&nbsp;
+  context('Check for dropdown attributes', function() {
+    it('should have dropdown class', function() {
+      var $container = $('&lt;div class="container"&gt;&lt;/div&gt;');
+&nbsp;
+      new Dropdown({
+        field: $container,
+      });
+&nbsp;
+      var hasClass = $container.hasClass('dropdown');
+      expect(hasClass).to.be.true;
+    });
+&nbsp;
+    it('should have dropdown__selected-wrapper and dropdown__selected', function() {
+      var $container = $('&lt;div class="container"&gt;&lt;/div&gt;');
+&nbsp;
+      new Dropdown({
+        field: $container,
+      });
+&nbsp;
+      var bool = $container.find('.dropdown__selected-wrapper').length &amp;&amp;
+        $container.find('.dropdown__selected-wrapper .dropdown__selected').length;
+&nbsp;
+      expect(bool).to.equal(1);
+    });
+&nbsp;
+    it('should replace mainText with options provided', function() {
+      var $container = $('&lt;div class="container"&gt;&lt;/div&gt;');
+&nbsp;
+      new Dropdown({
+        field: $container,
+        mainText: 'Sel',
+      });
+&nbsp;
+      var mainText = $container.find('.dropdown__selected').text();
+      expect(mainText).to.equal('Sel');
+    });
+&nbsp;
+    it('should have items on list provided', function() {
+      var $container = $('&lt;div class="container"&gt;&lt;/div&gt;');
+&nbsp;
+      new Dropdown({
+        field: $container,
+        list: [{name: 'item1'}, {name: 'item2'}],
+      });
+&nbsp;
+      var itemCount = $container.find('.dropdown__item').length;
+&nbsp;
+      expect(itemCount).to.be.equal(2);
+    });
+  });
+&nbsp;
+  context('Click events', function() {
+    it('should open on click on dropdown__selected-wrapper', function() {
+      var $container = $('&lt;div class="container"&gt;&lt;/div&gt;');
+&nbsp;
+      new Dropdown({
+        field: $container,
+        list: [{name: 'item1'}, {name: 'item2'}],
+      });
+&nbsp;
+      $container.find('.dropdown__selected-wrapper').trigger('click');
+&nbsp;
+      expect($container.hasClass('is-active')).to.be.true;
+    });
+&nbsp;
+    it('should close on click on dropdown__selected-wrapper if open', function() {
+      var $container = $('&lt;div class="container"&gt;&lt;/div&gt;');
+&nbsp;
+      new Dropdown({
+        field: $container,
+        list: [{name: 'item1'}, {name: 'item2'}],
+      });
+&nbsp;
+      // open
+      $container.find('.dropdown__selected-wrapper').trigger('click');
+&nbsp;
+      // close
+      $container.find('.dropdown__selected-wrapper').trigger('click');
+&nbsp;
+      expect($container.hasClass('is-active')).to.be.false;
+    });
+&nbsp;
+    it('should close on click on document', function(done) {
+      var $container = $('&lt;div class="container"&gt;&lt;/div&gt;');
+&nbsp;
+      new Dropdown({
+        field: $container,
+        list: [{name: 'item1'}, {name: 'item2'}],
+      });
+&nbsp;
+      // open
+      $container.find('.dropdown__selected-wrapper').trigger('click');
+&nbsp;
+      //close
+      setTimeout(function() {
+        $(document).trigger('click');
+        done();
+        expect($container.hasClass('is-active')).to.be.false;
+      }, 0);
+    });
+&nbsp;
+    it('should replace the main text on item click', function() {
+      var $container = $('&lt;div class="container"&gt;&lt;/div&gt;');
+&nbsp;
+      new Dropdown({
+        field: $container,
+        list: [{name: 'item1'}, {name: 'item2'}],
+      });
+&nbsp;
+      var $item = $container.find('.dropdown__item:first-child');
+&nbsp;
+      $item.trigger('click');
+&nbsp;
+      var bool = $item.hasClass('item-selected') &amp;&amp;
+        ($container.find('.dropdown__selected').text() === $item.text());
+&nbsp;
+      expect(bool).to.be.true;
+    });
+&nbsp;
+    it('should call the onSelect function on click', function() {
+      var $container = $('&lt;div class="container"&gt;&lt;/div&gt;');
+      var cb = sinon.spy();
+&nbsp;
+      new Dropdown({
+        field: $container,
+        list: [{name: 'item1'}, {name: 'item2'}],
+        onSelect: cb,
+      });
+&nbsp;
+      var $item = $container.find('.dropdown__item:first-child');
+      $item.trigger('click');
+&nbsp;
+      expect(cb).to.have.been.calledOnce;
+    });
+  });
+&nbsp;
+  context('Api', function() {
+    it('should append items to the dropdown list on addItems', function() {
+      var $container = $('&lt;div class="container"&gt;&lt;/div&gt;');
+&nbsp;
+      var d = new Dropdown({
+        field: $container,
+        list: [{name: 'item1'}, {name: 'item2'}],
+      });
+&nbsp;
+      d.addItems([
+        {name: 'item3'},{name: 'item4'},
+      ]);
+&nbsp;
+      expect($container.find('.dropdown__item').length).to.equal(4);
+    });
+&nbsp;
+    it('should empty the list on removeItems', function() {
+      var $container = $('&lt;div class="container"&gt;&lt;/div&gt;');
+&nbsp;
+      var d = new Dropdown({
+        field: $container,
+        list: [{name: 'item1'}, {name: 'item2'}],
+      });
+&nbsp;
+      d.removeItems();
+&nbsp;
+      expect($container.find('.dropdown__item').length).to.equal(0);
+    });
+&nbsp;
+    it('should add Custom el on addCustom', function() {
+      var $container = $('&lt;div class="container"&gt;&lt;/div&gt;');
+&nbsp;
+      var d = new Dropdown({
+        field: $container,
+        list: [{name: 'item1'}, {name: 'item2'}],
+      });
+&nbsp;
+      var customEl = '&lt;div class="custom"&gt;I am Custom&lt;/div&gt;';
+      d.addCustom(customEl);
+&nbsp;
+      expect($container.find('.dropdown__list-wrapper .custom').length).to.equal(1);
+    });
+  });
+&nbsp;
+  context('Custom selected and item template', function() {
+    it('should insert custom selected html', function() {
+      var $container = $('&lt;div class="container"&gt;&lt;/div&gt;');
+&nbsp;
+      new Dropdown({
+        field: $container,
+        list: [{name: 'item1'}, {name: 'item2'}],
+        selTpl: {tpl: '&lt;div class="custom"&gt;&lt;/div&gt;', _class: 'custom'},
+        mainText: 'Select this',
+      });
+&nbsp;
+      var txt = $container.find('.dropdown__selected .custom').text();
+      expect(txt).to.equal('Select this');
+    });
+&nbsp;
+    it('should insert custom item html', function() {
+      var $container = $('&lt;div class="container"&gt;&lt;/div&gt;');
+&nbsp;
+      new Dropdown({
+        field: $container,
+        list: [{name: 'item1'}, {name: 'item2'}],
+        itmTpl: {tpl: '&lt;div class="custom"&gt;&lt;/div&gt;', _class: 'custom'},
+      });
+&nbsp;
+      var txt = $container.find('.dropdown__item:first-child .custom').text();
+      expect(txt).to.equal('item1');
+    });
+  });
+});</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Aug 30 2015 12:19:12 GMT+0530 (IST)</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

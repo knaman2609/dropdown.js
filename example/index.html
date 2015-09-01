@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dropdown</title>
+  <link rel="stylesheet" href="../dropdown.css">
+  <style>
+  .container {
+    width: 1000px;
+    margin: 100px auto;
+    position: relative;
+  }
+
+  .mydropdown1,
+  .mydropdown2,
+  .mydropdown3,
+  .mydropdown4 {
+    position: absolute;
+    font-size: 14px;
+    width: 20%;
+  }
+
+  .mydropdown2 {
+    left: 22%;
+  }
+
+  .mydropdown3 {
+    left: 44%;
+  }
+
+  .mydropdown4 {
+    left: 66%;
+  }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="mydropdown1" id="example1"></div>
+  <div class="mydropdown2 " id="example2"></div>
+  <div class="mydropdown3 " id="example3"></div>
+  <div class="mydropdown4 " id="example4"></div>
+</div>
+
+<script src="../node_modules/jquery/dist/jquery.js"></script>
+<script src="../dropdown.js"></script>
+<script src="main.js"></script>
+
+</body>
+</html>

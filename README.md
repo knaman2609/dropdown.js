@@ -7,14 +7,32 @@ dropdown({
   mainText: 'Select Item',
   field: $('.mydropdown1'),
   list: [
-    {name: 'Naman'},
-    {name: 'Kalkh'}
+    {name: 'Item1'},
+    {name: 'Item2'}
   ],
   onSelect: function($item, $dropdown) {
     console.log($item, $dropdown);
   }
 });
 ```
+
+#### load from a url
+ ```
+ dropdown({
+    mainText: 'Select Item',
+    field: $('.mydropdown1'),
+    url: '/list',
+    parse: function(data) {
+      // use this function to specify data to be used
+      // good for updating main text with selected item
+      return   {list: data.items, selected: data.items[0]};
+    },
+    onSelect: function($item, $dropdown) {
+      console.log($item, $dropdown);
+    }
+  });
+ ```
+
 #### Use it as SelectBox [Options]
 - type : 'selectBox', it works as select box.Supports key navigation and search.
 - listHeight: '300', for selectBox to work properly provide the max-height of the list.
@@ -39,15 +57,33 @@ The itmTpl will be inserted inside
         field: $('.mydropdown1')
     });
 
-    dropdown.addItems({
+    dropdown.addItems(
         list: [
-         {name: 'Naman'},
-         {name: 'Kalkh'}
+         {name: 'Item1'},
+         {name: 'Item2'}
         ]
-    });
+    );
 
-#### Append an element to the list
-    dropdown.append('<div class="datepicker">My datepicker</div>');
+#### Update selected item text
+```
+dropdown.updateSelected({name: 'Item1'}, true);
+```
+
+pass `true` if the item is present in the list
+
+
+### Add items at the top
+```
+dropdown.prependItems(
+  list[
+    {name: 'Item1'}
+  ]
+});
+```
+
+
+#### Add custom elements
+    dropdown.addCustom('<div class="datepicker">My datepicker</div>');
 
 #### Options: 
 - noDataText: 'Not available', applies `is-disabled` class if list is empty.

@@ -1,0 +1,26 @@
+{
+  "name": "dropdown-selectbox",
+  "version": "0.0.1",
+  "description": "A simple dropdown/selectbox",
+  "keywords": [
+    "dropdown",
+    "selectbox"
+  ],
+  "main": "dropdown.js",
+  "repository": "knaman2609/dropdown.js",
+  "dependencies": {
+    "jquery": "latest"
+  },
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "mocha": "^2.2.5",
+    "jsdom": "3.1.2",
+    "sinon":"1.15.4",
+    "sinon-chai": "2.8.0"
+  },
+  "author": {
+    "name": "Naman Kalkhuria",
+    "email": "naman.kalkh@gmail.com"
+  },
+  "license": "MIT"
+}
