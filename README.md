@@ -11,15 +11,18 @@ new dropdown({
   mainText: 'Select Item',
   field: $('.mydropdown1'),
   list: [
-    {name: 'Item1'},
-    {name: 'Item2'}
+    {name: 'Item1', id: 1},
+    {name: 'Item2', id: 2}
   ],
   onSelect: function($item, $dropdown) {
-    console.log($item, $dropdown);
+    var id =  $item.data('id');
+    console.log(id, $dropdown);
   }
 });
 ```
 
+`id` are optional. If passed will be added as  `data-id` to each list-item.
+ 
 #### load from a url
 ```javascript
  new dropdown({
@@ -51,10 +54,9 @@ The selTpl will be inserted inside
 	```
 
 The itmTpl will be inserted inside 
-
-	```
-    <div class="dropdown__item"></div>
-	```
+  ```
+  <div class="dropdown__item"></div>
+  ```
 
 #### Add items dynamically
 ```javascript
@@ -73,7 +75,7 @@ dropdown.addItems(
 
 #### Update selected item text
 ```javascript
-dropdown.updateSelected({name: 'Item1'}, true);
+dropdown.updateSelected({name: 'Item1', id: 1}, true);
 ```
 
 pass `true` if the item is present in the list
