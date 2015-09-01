@@ -1,6 +1,6 @@
 {
   "name": "dropdown-selectbox",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple dropdown/selectbox",
   "keywords": [
     "dropdown",
@@ -15,7 +15,7 @@
     "chai": "^3.2.0",
     "mocha": "^2.2.5",
     "jsdom": "3.1.2",
-    "sinon":"1.15.4",
+    "sinon": "1.15.4",
     "sinon-chai": "2.8.0"
   },
   "author": {
