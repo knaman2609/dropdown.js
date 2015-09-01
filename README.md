@@ -3,7 +3,7 @@
 #### create a dropdown
 
 ```javascript
-dropdown({
+new dropdown({
   mainText: 'Select Item',
   field: $('.mydropdown1'),
   list: [
@@ -18,7 +18,7 @@ dropdown({
 
 #### load from a url
  ```
- dropdown({
+ new dropdown({
     mainText: 'Select Item',
     field: $('.mydropdown1'),
     url: '/list',
@@ -52,7 +52,7 @@ The itmTpl will be inserted inside
 	```
 
 #### Add items dynamically
-    var dropdown =  dropdown({
+    var dropdown = new dropdown({
         mainText: 'Select Item',
         field: $('.mydropdown1')
     });
