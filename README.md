@@ -1,7 +1,8 @@
 # dropDown.js
 #### install
-    npm install npm i dropdown-selectbox
-if not using browerify.webpack simply copy dropdown.js and dropdown.css
+    npm install  dropdown-selectbox
+
+if not using browerify.webpack simply copy `dropdown.js` and `dropdown.css`
 
 #### create a dropdown
 
