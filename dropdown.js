@@ -131,8 +131,8 @@
   };
 
   /**
-   * make sure the item biend navigated or
-   * searched in in the dropdown view
+   * make sure the item bieng navigated or
+   * searched is in the dropdown view
    */
   var ensureWithinView = function() {
     var itemH = this.itemH;

@@ -20,9 +20,38 @@ new dropdown({
   }
 });
 ```
-
 `id` are optional. If passed will be added as  `data-id` to each list-item.
- 
+
+
+#### html generated
+```html
+<div class="dropdown">
+  <div class="dropdown__selected-wrapper">
+    <div class="dropdown__selected">Item1</div>
+    <div class="dropdown__arrow"></div>
+  </div>
+  
+  <div class="dropdown__list-wrapper">
+    <div class="dropdown__list">
+      <div class="dropdown__item">Item1</div>
+      <div class="dropdown__item">Item2</div>
+    </div>
+  </div>  
+</div>  
+
+```
+
+
+#### Css
+Copy the css from dropdown.css file .
+
+##### Classes
+
+- is-active - applied to  `dropdown`, if dropdown is open.
+- is-disabled - applied to `dropdown`, if the list provided is an empty array.
+- item-selected - applied to `dropdown__item`,  if item is selected.
+- scrolled -  applied to   `dropdown__item`, if item s currently being navigated using keys.
+
 #### load from a url
 ```javascript
  new dropdown({
@@ -62,8 +91,8 @@ var dropdown = new dropdown({
 
 dropdown.addItems(
     list: [
-     {name: 'Item1'},
-     {name: 'Item2'}
+     {name: 'Item1', id: 1},
+     {name: 'Item2': id: 2}
     ]
 );
 ```
@@ -80,13 +109,10 @@ pass `true` if the item is present in the list
 ```javascript
 dropdown.prependItems(
   list[
-    {name: 'Item1'}
+    {name: 'Item1', id: 1}
   ]
 });
 ```
-
-### Css
-Copy the css from dropdown.css file 
 
   
 #### Add custom elements
@@ -94,7 +120,7 @@ Copy the css from dropdown.css file
 
 #### Options: 
 - noDataText: 'Not available', applies `is-disabled` class if list is empty.
-- selected: {name: 'Naman', 'id': 1}, replaces the mainText if id is found in the list.
+- selected: {name: 'Item1', 'id': 1}, replaces the mainText if id is found in   the list.
 - nameAttr: 'display_name', use this if you have other than name in your json.
 - idAttr: '_id', use this if  you have other than id in your json.
 
