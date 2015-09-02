@@ -2,12 +2,17 @@
 #### install
     npm install  dropdown-selectbox
 
-if not using browerify/webpack simply copy `dropdown.js` and `dropdown.css`
+#### use
+    var Dropdown = require('dropdown-selectbox');
+
+if not using browerify/webpack simply copy `dropdown.js` and `dropdown.css`.
+
+See the examples in `example` folder.
 
 #### create a dropdown
 
 ```javascript
-new dropdown({
+new Dropdown({
   mainText: 'Select Item',
   field: $('.mydropdown1'),
   list: [
@@ -54,7 +59,7 @@ Copy the css from dropdown.css file .
 
 #### load from a url
 ```javascript
- new dropdown({
+ new Dropdown({
     mainText: 'Select Item',
     field: $('.mydropdown1'),
     url: '/list',
@@ -84,7 +89,7 @@ The itmTpl will be inserted inside ` <div class="dropdown__item"></div>`
 
 #### Add items dynamically
 ```javascript
-var dropdown = new dropdown({
+var dropdown = new Dropdown({
   mainText: 'Select Item',
   field: $('.mydropdown1')
 });
